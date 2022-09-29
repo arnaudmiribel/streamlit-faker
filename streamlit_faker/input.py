@@ -8,7 +8,7 @@ fake = Faker()
 fake.add_provider(date_time)
 
 
-class StreamlitInputsProvider(BaseProvider):
+class StreamlitInputProvider(BaseProvider):
     def text_input(self, **kwargs):
         return st_command_with_default(
             st.text_input,

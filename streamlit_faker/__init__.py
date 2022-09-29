@@ -1,9 +1,9 @@
 from faker import Faker
 
-from fake_chart import StreamlitChartProvider
-from fake_data_display import StreamlitDataDisplayProvider
-from fake_input import StreamlitInputsProvider
-from fake_text import StreamlitTextProvider
+from .fake_chart import StreamlitChartProvider
+from .fake_data_display import StreamlitDataDisplayProvider
+from .fake_input import StreamlitInputsProvider
+from .fake_text import StreamlitTextProvider
 
 
 def get_streamlit_faker(locale: str = "en-US"):

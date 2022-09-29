@@ -121,7 +121,7 @@ def _scatter_chart():
         data=datasets["seattle_weather"],
         x=alt.X("wind:Q", title="Custom X title"),
         y=alt.Y("temp_min:Q", title="Custom Y title"),
-        title="A beautiful scatter chart with custom opacity",
+        # title="A beautiful scatter chart with custom opacity",
         opacity=0.2,
     )
 
@@ -132,7 +132,7 @@ def _bar_chart_horizontal():
         data=datasets["seattle_weather"].head(15),
         x="temp_max:Q",
         y=alt.Y("date:O", title="Temperature"),
-        title="A beautiful horizontal bar chart",
+        # title="A beautiful horizontal bar chart",
     )
 
 
@@ -146,7 +146,7 @@ def _bar_chart_log():
             title="Count of records",
             scale=alt.Scale(type="symlog"),
         ),
-        title="A beautiful histogram... with log scale",
+        # title="A beautiful histogram... with log scale",
     )
 
 
@@ -158,7 +158,7 @@ def _bar_chart_sorted():
         .head(25),
         x=alt.X("date", sort="-y"),
         y=alt.Y("temp_max:Q"),
-        title="A beautiful sorted-by-value bar chart",
+        # title="A beautiful sorted-by-value bar chart",
     )
 
 
@@ -172,7 +172,7 @@ def _time_heatmap_chart():
             "median(temp_max):Q",
             legend=None,
         ),
-        title="A beautiful time hist chart",
+        # title="A beautiful time hist chart",
     )
 
 
@@ -182,7 +182,7 @@ def _sparkline_chart():
         data=datasets["stocks"].query("symbol == 'GOOG'"),
         x="date",
         y="price",
-        title="A beautiful sparkline chart",
+        # title="A beautiful sparkline chart",
         rolling=7,
         height=150,
     )
@@ -194,7 +194,7 @@ def _sparkbar_chart():
         data=datasets["stocks"].query("symbol == 'GOOG'"),
         x="date",
         y="price",
-        title="A beautiful sparkbar chart",
+        # title="A beautiful sparkbar chart",
         height=150,
     )
 
@@ -206,7 +206,7 @@ def _bar_stacked_chart():
         x=alt.X("variety", title="Variety"),
         y="sum(yield)",
         color="site",
-        title="A beautiful stacked bar chart",
+        # title="A beautiful stacked bar chart",
     )
 
 
@@ -217,7 +217,7 @@ def _bar_normalized_chart():
         x=alt.X("variety:N", title="Variety"),
         y=alt.Y("sum(yield):Q", stack="normalize"),
         color="site:N",
-        title="A beautiful normalized stacked bar chart",
+        # title="A beautiful normalized stacked bar chart",
     )
 
 
@@ -229,7 +229,7 @@ def _bar_grouped_chart():
         y="sum(yield):Q",
         color="year:N",
         column="site:N",
-        title="A beautiful grouped bar charts",
+        # title="A beautiful grouped bar charts",
         width=90,
         use_container_width=False,
     )

@@ -1,9 +1,8 @@
-from functools import partial
-from typing import Callable, Optional
-
 import streamlit as st
 from faker import Faker
 from faker.providers import BaseProvider
+
+from .common import st_command_with_default
 
 fake = Faker()
 
@@ -25,12 +24,6 @@ def jpeg_res(filename):
 DEFAULT_LATEX = r"""a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
 \sum_{k=0}^{n-1} ar^k =
 a \left(\frac{1-r^{n}}{1-r}\right)"""
-
-
-def st_command_with_default(st_command: Callable, kwarg_defaults: dict, **kwargs):
-    for kwarg, default in kwarg_defaults.items():
-        kwargs[kwarg] = kwargs.get(kwarg, default)
-    return partial(st_command, **kwargs)()
 
 
 class StreamlitTextProvider(BaseProvider):

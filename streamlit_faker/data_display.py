@@ -33,7 +33,7 @@ class StreamlitDataDisplayProvider(BaseProvider):
             st.json,
             {
                 "body": fake.simple_profile(),
-                "expanded": False,
+                "expanded": True,
             },
             **kwargs,
         )

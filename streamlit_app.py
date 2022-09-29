@@ -59,7 +59,11 @@ from streamlit_faker import (
 #     stfk.balloons()
 #     stfk.warning()
 
-
+st.title("🥷")
+st.title("Streamlit Faker")
+st.subheader("Description")
+st.text("(WIP)")
+st.subheader("Supported commands")
 for cmd in (
     text_commands
     + chart_commands
@@ -67,11 +71,11 @@ for cmd in (
     + status_commands
     + data_display_commands
 ):
-    if cmd == "camera_input":
+    if cmd in ("camera_input", "sign", "metric_unit"):
         continue
     try:
-        st.write("---")
         st.write(f"`fake.{cmd}()`")
         stfk.__getattr__(cmd)()
     except:
         st.text("(WIP)")
+    st.write("---")

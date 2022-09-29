@@ -258,3 +258,24 @@ class StreamlitChartProvider(BaseProvider):
 
     def bar_chart(self):
         return self.random_element([_bar_chart])()
+
+    def map(self):
+        raise NotImplementedError
+
+    def pyplot(self):
+        raise NotImplementedError
+
+    def vega_lite_chart(self):
+        raise NotImplementedError
+
+    def plotly_chart(self):
+        raise NotImplementedError
+
+    def bokeh_chart(self):
+        raise NotImplementedError
+
+    def pydeck_chart(self):
+        raise NotImplementedError
+
+    def graphviz_chart(self):
+        raise NotImplementedError

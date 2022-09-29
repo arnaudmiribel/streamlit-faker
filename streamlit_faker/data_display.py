@@ -37,3 +37,9 @@ class StreamlitDataDisplayProvider(BaseProvider):
             },
             **kwargs,
         )
+
+    def dataframe(self, **kwargs):
+        raise NotImplementedError
+
+    def table(self, **kwargs):
+        raise NotImplementedError

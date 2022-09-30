@@ -3,7 +3,10 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from faker.providers import BaseProvider
+from matplotlib import pyplot as plt
 from streamlit_extras import altex
+
+from .common import st_command_with_default
 
 
 @st.experimental_memo
@@ -261,14 +264,43 @@ class StreamlitChartProvider(BaseProvider):
     def bar_chart(self):
         return self.random_element([_bar_chart])()
 
-    def map(self):
-        raise NotImplementedError
+    def map(self, **kwargs):
+        return st_command_with_default(
+            st.map,
+            {
+                "data": pd.DataFrame(
+                    np.random.randn(self.random_int(600, 1000), 2) / [50, 50]
+                    + [37.76, -122.4],
+                    columns=["lat", "lon"],
+                )
+            },
+            **kwargs,
+        )
 
-    def pyplot(self):
-        raise NotImplementedError
+    def pyplot(self, **kwargs):
+        arr = np.random.normal(1, 1, size=100)
+        fig, ax = plt.subplots()
+        ax.hist(arr, bins=20)
+        return st_command_with_default(st.pyplot, {"fig": fig}, **kwargs)
 
-    def vega_lite_chart(self):
-        raise NotImplementedError
+    def vega_lite_chart(self, **kwargs):
+        data = pd.DataFrame(np.random.randn(200, 3), columns=["a", "b", "c"])
+        return st_command_with_default(
+            st.vega_lite_chart,
+            {
+                "data": data,
+                "spec": {
+                    "mark": {"type": "circle", "tooltip": True},
+                    "encoding": {
+                        "x": {"field": "a", "type": "quantitative"},
+                        "y": {"field": "b", "type": "quantitative"},
+                        "size": {"field": "c", "type": "quantitative"},
+                        "color": {"field": "c", "type": "quantitative"},
+                    },
+                },
+            },
+            **kwargs,
+        )
 
     def plotly_chart(self):
         raise NotImplementedError

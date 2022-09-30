@@ -201,7 +201,6 @@ class StreamlitDataDisplayProvider(BaseProvider):
             **kwargs,
         )
 
-    @staticmethod
     def _pandas_dataframe(self):
         size = self.random_int(5, 20)
         num_cols = self.random_int(3, 6)

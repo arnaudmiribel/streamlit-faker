@@ -1,7 +1,9 @@
 import streamlit as st
 
-from streamlit_faker import StreamlitFaker as st_faker
-from streamlit_faker import all_commands
+from streamlit_faker import all_commands, get_streamlit_faker
+
+if "seed" not in st.session_state:
+    st.session_state["seed"] = 12
 
 st.title("🥷 Streamlit Faker")
 
@@ -12,35 +14,52 @@ st.write(
 
 st.code(
     """
-from streamlit_faker import StreamlitFaker as st_faker
+from streamlit_faker import get_streamlit_faker
+
+st_faker = get_streamlit_faker()
 st_faker.subheader()
 st_faker.markdown()
 st_faker.selectbox()
-st_faker.line_chart()
+st_faker.slider()
+st_faker.map()
 """,
     language="python",
 )
 
-
-generate = st.button("Fake it!")
+generate = st.button("🥷 Fake it!")
 
 if generate:
+    st.session_state.seed += 1
+
+st_faker = get_streamlit_faker(seed=st.session_state.seed)
+with st.spinner("Faking..."):
     st_faker.subheader()
     st_faker.markdown()
     st_faker.selectbox()
-    st_faker.line_chart()
+    st_faker.slider()
+    st_faker.map()
 
-st.write("")
-st.write("")
 
-st.write("---")
-with st.expander("All faker commands"):
+with st.expander("Lookup all available Streamlit Faker commands"):
     for cmd in all_commands:
-        if cmd in ("camera_input", "sign", "metric_unit", "snow", "balloons"):
+        if cmd.startswith("_"):
             continue
-        try:
-            st.write(f"`faker.{cmd}()`")
-            st_faker.__getattr__(cmd)()
-        except:
-            st.text("(WIP)")
-        st.write("---")
+        else:
+            st.write(f"- `st_faker.{cmd}`")
+
+    # for cmd in all_commands:
+    #     if cmd.startswith("_") or cmd in (
+    #         "camera_input",
+    #         "snow",
+    #         "balloons",
+    #         "exception",
+    #     ):
+    #         continue
+    #     try:
+    #         st.write(f"`faker.{cmd}()`")
+    #         st_faker = get_streamlit_faker(seed=st.session_state.seed).__getattr__(
+    #             cmd
+    #         )()
+    #     except:
+    #         st.text("(WIP)")
+    #     st.write("---")

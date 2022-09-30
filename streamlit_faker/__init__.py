@@ -32,3 +32,11 @@ input_commands = list(
 status_commands = list(
     set(dir(StreamlitStatusProvider)) - set(dir(StreamlitTextProvider))
 )
+
+all_commands = (
+    text_commands
+    + chart_commands
+    + input_commands
+    + status_commands
+    + data_display_commands
+)

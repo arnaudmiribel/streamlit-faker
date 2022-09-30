@@ -99,7 +99,9 @@ def _multi_line_chart():
 def _bar_chart():
     symbol = np.random.choice(datasets["stocks"].symbol.unique(), 1)[0]
     st.bar_chart(
-        data=datasets["stocks"].query(f"symbol == '{symbol}'"),
+        data=datasets["stocks"].query(
+            f"(symbol == '{symbol}') & (date >= '2006-01-01')"
+        ),
         x="date",
         y="price",
         # title="A beautiful bar chart",

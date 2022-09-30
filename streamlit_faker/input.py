@@ -42,7 +42,15 @@ class StreamlitInputProvider(BaseProvider):
         )
 
     def download_button(self, **kwargs):
-        raise NotImplementedError
+        return st_command_with_default(
+            st.download_button,
+            {
+                "label": "Download " + fake.name(),
+                "data": "foo",
+                "key": fake.name().lower(),
+            },
+            **kwargs,
+        )
 
     def checkbox(self, **kwargs):
         return st_command_with_default(
@@ -103,7 +111,18 @@ class StreamlitInputProvider(BaseProvider):
         )
 
     def select_slider(self, **kwargs):
-        raise NotImplementedError
+        return st_command_with_default(
+            st.select_slider,
+            {
+                "label": fake.name(),
+                "options": self.random_elements(
+                    [fake.name() for _ in range(self.random_int(5, 10))],
+                    self.random_int(3, 6),
+                ),
+                "key": fake.name().lower(),
+            },
+            **kwargs,
+        )
 
     def number_input(self, **kwargs):
         return st_command_with_default(
@@ -129,10 +148,26 @@ class StreamlitInputProvider(BaseProvider):
         )
 
     def time_input(self, **kwargs):
-        raise NotImplementedError
+        return st_command_with_default(
+            st.time_input,
+            {
+                "label": fake.name(),
+                "value": fake.date_time(),
+                "key": fake.name().lower(),
+            },
+            **kwargs,
+        )
 
-    def file_uplodaer(self, **kwargs):
-        raise NotImplementedError
+    def file_uploader(self, **kwargs):
+        return st_command_with_default(
+            st.file_uploader,
+            {
+                "label": fake.name(),
+                "type": self.random_element((".png", ".csv", ".txt", ".parquet")),
+                "key": fake.name().lower(),
+            },
+            **kwargs,
+        )
 
     def camera_input(self, **kwargs):
         return st_command_with_default(

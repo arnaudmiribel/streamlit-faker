@@ -2,10 +2,14 @@
 
 # streamlit-faker
 
-This repository introduces `streamlit-faker`, a useful library to very easily fake Streamlit commands. 
+This repository introduces `streamlit-faker`, a library to very easily fake Streamlit commands. You can use it to quickly draft a user interface or as a QA tool... or maybe something more (let us know!). It is built upon the great [joke2k/faker](https://github.com/joke2k/faker) project!
 
-Sample input:
+## Introduction
+
+Call any Streamlit command without parameters, and it will run the command with random parameters.
+- Sample input:
 ```python
+# streamlit_app.py
 from streamlit_faker import get_streamlit_faker
 
 st_faker = get_streamlit_faker()
@@ -16,6 +20,8 @@ st_faker.slider()
 st_faker.map()
 ```
 
-Sample output:
+- Now run `streamlit run streamlit_app.py`
+
+- Sample output:
 
 <img width="686" alt="image" src="https://user-images.githubusercontent.com/7164864/194157363-f8078096-b5e4-40dd-acdf-4d5bedc5585b.png">

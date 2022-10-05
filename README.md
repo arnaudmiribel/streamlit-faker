@@ -14,7 +14,7 @@ pip install streamlit-faker
 
 ## Introduction
 
-Call any Streamlit command without parameters, and it will run the command with random parameters.
+Call any Streamlit command (see [docs](https://docs.streamlit.io) e.g. `.info()`, `subheader()`, `text_input()`... **without** parameters using streamlit-faker, and it will execute the command with random parameters.
 
 - Sample input:
 ```python
@@ -29,7 +29,7 @@ st_faker.slider()
 st_faker.map()
 ```
 
-- Now run `streamlit run streamlit_app.py`
+- Don't forget to run `streamlit run streamlit_app.py`
 
 - Sample output:
 

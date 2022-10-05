@@ -17,4 +17,5 @@ st_faker.map()
 ```
 
 Sample output:
+
 <img width="686" alt="image" src="https://user-images.githubusercontent.com/7164864/194157363-f8078096-b5e4-40dd-acdf-4d5bedc5585b.png">

@@ -14,7 +14,7 @@ pip install streamlit-faker
 
 ## Introduction
 
-Call any Streamlit command (see [docs](https://docs.streamlit.io) e.g. `.info()`, `subheader()`, `text_input()`...) **without** parameters using streamlit-faker, and it will execute the command with random parameters.
+Call any Streamlit command (see [Streamlit docs](https://docs.streamlit.io) e.g. `.info()`, `subheader()`, `text_input()`...) **without** parameters using streamlit-faker, and it will execute the command with random parameters.
 
 - Sample input:
 ```python

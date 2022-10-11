@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "streamlit_faker"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Arnaud Miribel", email="arnaudmiribel@gmail.com" },
 ]

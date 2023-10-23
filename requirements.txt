@@ -1,4 +1,4 @@
 streamlit-extras
 faker
 matplotlib
--e ./
+streamlit-faker==0.0.3

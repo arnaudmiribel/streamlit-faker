@@ -8,8 +8,14 @@ from streamlit_extras import altex
 
 from .common import st_command_with_default
 
+try:
+    from streamlit import cache_data, cache_resource  # streamlit >= 1.18.0
+    
+except ImportError:
+    from streamlit import experimental_memo as cache_data, experimental_singleton as cache_resource  # streamlit >= 0.89
 
-@st.experimental_memo
+
+@cache_data
 def url_to_dataframe(url: str, parse_dates: list = ["date"]) -> pd.DataFrame:
     """Collects a CSV/JSON file from a URL and load it into a dataframe, with appropriate caching (memo)
     Args:
@@ -39,7 +45,7 @@ BARLEY_DATA_URL = (
 )
 
 
-@st.experimental_singleton()
+@cache_resource
 def get_datasets():
     N = 50
     rand = pd.DataFrame()
@@ -78,7 +84,7 @@ def get_datasets():
 datasets = get_datasets()
 
 
-@st.experimental_memo
+@cache_data
 def _line_chart():
     st.line_chart(
         data=datasets["stocks"].query("symbol == 'GOOG'"),
@@ -88,7 +94,7 @@ def _line_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _multi_line_chart():
     altex.line_chart(
         data=datasets["stocks"],
@@ -111,7 +117,7 @@ def _bar_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _hist_chart():
     altex.hist_chart(
         data=datasets["stocks"].assign(price=datasets["stocks"].price.round(0)),
@@ -120,7 +126,7 @@ def _hist_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _scatter_chart():
     altex.scatter_chart(
         data=datasets["seattle_weather"],
@@ -131,7 +137,7 @@ def _scatter_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_chart_horizontal():
     altex.bar_chart(
         data=datasets["seattle_weather"].head(15),
@@ -141,7 +147,7 @@ def _bar_chart_horizontal():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_chart_log():
     altex.bar_chart(
         data=datasets["seattle_weather"],
@@ -155,7 +161,7 @@ def _bar_chart_log():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_chart_sorted():
     altex.bar_chart(
         data=datasets["seattle_weather"]
@@ -167,7 +173,7 @@ def _bar_chart_sorted():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _time_heatmap_chart():
     altex.hist_chart(
         data=datasets["seattle_weather"],
@@ -181,7 +187,7 @@ def _time_heatmap_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _sparkline_chart():
     altex.line_chart(
         data=datasets["stocks"].query("symbol == 'GOOG'"),
@@ -193,7 +199,7 @@ def _sparkline_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _sparkbar_chart():
     altex.bar_chart(
         data=datasets["stocks"].query("symbol == 'GOOG'"),
@@ -204,7 +210,7 @@ def _sparkbar_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_stacked_chart():
     altex.bar_chart(
         data=datasets["barley"],
@@ -215,7 +221,7 @@ def _bar_stacked_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_normalized_chart():
     altex.bar_chart(
         data=datasets["barley"],
@@ -226,7 +232,7 @@ def _bar_normalized_chart():
     )
 
 
-@st.experimental_memo
+@cache_data
 def _bar_grouped_chart():
     altex.bar_chart(
         data=datasets["barley"],

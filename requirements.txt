@@ -1,3 +1,4 @@
 streamlit-extras
 faker
 matplotlib
+-e ./

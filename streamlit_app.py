@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title="Streamlit Faker", page_icon="🥷")
+
 from streamlit_faker import all_commands, get_streamlit_faker
 
 if "seed" not in st.session_state:

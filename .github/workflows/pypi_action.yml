@@ -10,6 +10,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for trusted publishing
 
     steps:
       - uses: actions/checkout@v4
@@ -25,8 +27,6 @@ jobs:
         run: |
           uv build
       - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          uv tool run twine upload dist/*
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # Uses trusted publishers - no API token needed
+        # Requires configuring trusted publishing on PyPI for this repository

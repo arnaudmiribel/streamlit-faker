@@ -4,20 +4,20 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "streamlit_faker"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Arnaud Miribel", email="arnaudmiribel@gmail.com" },
 ]
 description = "streamlit-faker is a library to very easily fake Streamlit commands"
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
     "streamlit",
-    "streamlit-extras",
+    "altex>=0.2.0",
     "faker",
     "matplotlib",
 ]
@@ -30,3 +30,15 @@ keywords = [
 [project.urls]
 "Homepage" = "https://github.com/arnaudmiribel/streamlit-faker"
 "Bug Tracker" = "https://github.com/arnaudmiribel/streamlit-faker/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-mock>=3.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.4.1",
+    "pytest-mock>=3.14.1",
+]

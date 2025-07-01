@@ -1,18 +1,19 @@
 import altair as alt
+import altex
 import numpy as np
 import pandas as pd
 import streamlit as st
 from faker.providers import BaseProvider
 from matplotlib import pyplot as plt
-from streamlit_extras import altex
 
 from .common import st_command_with_default
 
 try:
     from streamlit import cache_data, cache_resource  # streamlit >= 1.18.0
-    
+
 except ImportError:
-    from streamlit import experimental_memo as cache_data, experimental_singleton as cache_resource  # streamlit >= 0.89
+    from streamlit import experimental_memo as cache_data  # streamlit >= 0.89
+    from streamlit import experimental_singleton as cache_resource
 
 
 @cache_data
